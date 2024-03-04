@@ -7,8 +7,33 @@ services:
             NODE_ENV: production
         ports:
             - 3000:3000
-    deploy:
-        resources:
-            limits:
-                cpus: '0.5'
-                memory: '100mb'
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.5'
+                    memory: '100mb'
+    jenkins:
+        build:
+            context: .
+            dockerfile: Jenkins.Dockerfile
+        image: jenkins-blueocean
+        environment:
+            - DOCKER_HOST=tcp://docker:2376
+            - DOCKER_CERT_PATH=/certs/client
+            - DOCKER_TLS_VERIFY=1
+        volumes:
+            - ./jenkins/jenkins-data:/var/jenkins_home
+            - ./jenkins/jenkins-docker-certs:/certs/client:ro
+        ports:
+            - '8080:8080'
+            - '50000:50000'
+        networks:
+            - jenkins
+        deploy:
+            resources:
+                limits:
+                    cpus: '1.0'
+                    memory: '800mb'
+networks:
+    jenkins:
+        driver: bridge
