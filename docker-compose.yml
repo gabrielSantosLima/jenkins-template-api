@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+    server:
+        build:
+            context: .
+        environment:
+            NODE_ENV: production
+        ports:
+            - 3000:3000
+    deploy:
+        resources:
+            limits:
+                cpus: '0.5'
+                memory: '100mb'
