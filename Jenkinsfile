@@ -13,13 +13,13 @@ pipeline{
                 sh 'echo "Building application"'
                 sh 'node --version'
                 sh 'npm ci'
-                sh 'npm build'
+                sh 'npm run build'
             }
         }
         stage('Test'){
             steps{
                 sh 'echo "Testing application"'
-                sh 'npm test'
+                sh 'npm run test'
             }
         }
         stage('Deploy'){
