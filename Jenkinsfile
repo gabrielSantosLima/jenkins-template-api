@@ -5,15 +5,15 @@ pipeline{
         }
     }
     triggers{
-        pollSCM('H/2 * * * *')
+        pollSCM('H/1 * * * *')
     }
     stages{
         stage('Build'){
             steps{
                 sh 'echo "Building application"'
-                sh 'node --version"'
-                sh 'npm ci"'
-                sh 'npm build"'
+                sh 'node --version'
+                sh 'npm ci'
+                sh 'npm build'
             }
         }
         stage('Test'){
