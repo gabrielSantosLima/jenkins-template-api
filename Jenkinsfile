@@ -22,11 +22,10 @@ pipeline{
                 sh 'npm run test'
             }
         }
-        stage('Deploy'){
+        stage('Lint'){
             steps{
-                sh 'echo "Deploying application"'
-                sh 'docker composed down'
-                sh 'docker composed up -d server --build'
+                sh 'echo "Checking code style"'
+                sh 'npm run lint'
             }
         }
     }
