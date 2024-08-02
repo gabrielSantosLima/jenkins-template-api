@@ -6,6 +6,7 @@
     "scripts": {
         "start": "node build/src/index.js",
         "build": "tsc -p .",
+        "lint": "eslint --fix",
         "dev": "nodemon src/index.ts",
         "test": "jest"
     },
